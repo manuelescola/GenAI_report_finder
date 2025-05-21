@@ -1,52 +1,109 @@
 # GenAI_report_finder
-This repo creates an AI that finds a Power BI report for you using a Retrieval-Augmented Generation (RAG) system with a very practical use case:
-🧠 The user describes the information they need (e.g., “sales by region this quarter”), and the website returns the most relevant Power BI report from a set of existing reports.
 
-Under the hood:
-1. Descriptions of reports are embedded as vectors.
-2. A user query is also embedded.
-3. The closest vectors (i.e., most semantically similar reports) are retrieved.
-4. The app shows the names and descriptions of those reports.
+This project creates an AI assistant that helps users find the most relevant Power BI report, based on a natural language query.
 
-_This is RAG without the generation step — just the “R” (Retrieval) part of RAG._
+🧠 The user describes the information they need (e.g., “sales by region this quarter”), and the app returns the best-matching report using a **Retrieval-Augmented Generation (RAG)** approach — but without the "generation" part.
 
-The repo is structured as follows.
+---
 
+## 🔍 How It Works
+
+1. Descriptions of reports are embedded as vectors using OpenAI.
+2. A user query is also embedded in the same vector space.
+3. The system retrieves the closest matching report vectors using ChromaDB.
+4. The app displays the name and description of the top matches.
+
+---
+
+## 📁 Project Structure
+
+```
 GenAI_report_finder/
-│
-├── .venv
-│
 ├── app/
-│   ├── main.py             # Streamlit app
-│   └── retriever.py        # RAG logic to fetch best-matching report
+│   ├── main.py              # Streamlit UI
+│   └── retriever.py         # Vector search logic
 │
-├── data/                   
-│   └── reports.xlsx        # Excel file with report descriptions
+├── data/
+│   └── reports.xlsx         # Excel file with report descriptions (not committed)
 │
 ├── scripts/
-│   └── build_vector_db.py  # Converts Excel → VectorDB
+│   └── build_vector_db.py   # Loads Excel and builds the vector database
 │
-├── vectorstore/            # ChromaDB persisting folder with report descriptions in a vector db
-│   ├── chroma.sqlite3
-│   └── 4e7867b3-5258-4081-a123-1abde192b78b
-│       ├── data_level0.bin
-│       ├── header.bin
-│       ├── length.bin
-│       └── link_lists.bin
+├── vectorstore/             # ChromaDB vector DB (generated, not committed)
 │
-├── .dockerignore
-│
-├── .env
-│
+├── .env.sample              # Template for environment variables
 ├── .gitignore
-│
-├── docker-compose.yml
-│
+├── .dockerignore
 ├── Dockerfile
-│
-├── README.md
-│
-└── requirements.txt
+├── docker-compose.yml
+├── requirements.txt
+└── README.md
+```
 
+---
 
+## 🚀 Getting Started
 
+### 1. Clone the Repo
+
+```bash
+git clone https://github.com/yourusername/GenAI_report_finder.git
+cd GenAI_report_finder
+```
+
+### 2. Set Up Environment
+
+Create a `.env` file from the template:
+
+```bash
+cp .env.sample .env
+```
+
+Update it with your OpenAI API key.
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Build the Vector Database
+
+```bash
+python scripts/build_vector_db.py
+```
+
+### 5. Run the App
+
+#### Option A: Local (Dev Mode)
+
+```bash
+streamlit run app/main.py
+```
+
+#### Option B: Docker (Production Ready)
+
+```bash
+docker build -t genai_report_finder .
+docker run --env-file .env -p 8501:8501 genai_report_finder
+```
+
+---
+
+## ✅ Requirements
+
+- Python 3.10+
+- [OpenAI API Key](https://platform.openai.com/)
+- [Docker (optional)](https://www.docker.com/products/docker-desktop/)
+
+---
+
+## 🛡️ Security
+
+Do **not** commit your `.env` file or actual report data. Use `.env.sample` to share expected environment variables safely.
+
+---
+
+## 📬 Contact
+
+Questions or feedback? Open an issue or contact [yourusername](https://github.com/manuelescola).
