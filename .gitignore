@@ -1,0 +1,25 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+
+# Environment variables
+.env
+
+# IDE and editor settings
+.vscode/
+
+# Data and generated vector database
+data/
+vectorstore/
+
+# SQLite and other databases
+*.sqlite3
+*.db
+
+# Docker and build artifacts
+*.pyc
+*.pyo
+*.pyd
