@@ -4,7 +4,8 @@ This project creates an AI assistant that helps users find the most relevant Pow
 
 🧠 The user describes the information they need (e.g., “sales by region this quarter”), and the app returns the best-matching report using a **Retrieval-Augmented Generation (RAG)** approach — but without the "generation" part.
 
-![image](https://github.com/user-attachments/assets/00d8e8a0-9268-419c-a78f-704c739f5df0)
+![image](https://github.com/user-attachments/assets/6da09ab0-4b9d-493b-969c-70cd648b3161)
+
 
 
 ---
